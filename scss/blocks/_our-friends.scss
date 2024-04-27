@@ -1,0 +1,73 @@
+.our_friends {
+    min-height: 877px;
+    width: 100%;
+    background-color: #fff;
+    .container {
+        padding-top: 62px;
+    }
+    .our_friends_content {
+        min-height: 697px;
+        width: 100%;
+        .our_friends_title {
+            @include title-style;
+            text-align: center;
+        }
+        .our_friends_slider {
+            width: 100%;
+            min-height: 435px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 60px;
+            .slider_arrow {
+                @include slider-btn-style;
+            }
+            .disable_arrow {
+                @include disable-slider-btn;
+            }
+            .slider_wrapper {
+                width: calc(270px + 450px + 270px);
+                min-height: 435px;
+                overflow: hidden;
+                .slider_content {
+                    width: 100%;
+                    min-height: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    .slider_card {
+                        background-color: #FAFAFA;
+                        width: 270px;
+                        height: 435px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        .card_img {
+                            width: 100%;
+                        }
+                        .card_title {
+                            margin-top: 28px;
+                            text-align: center;
+                            color: rgb(84, 84, 84);
+                            font-size: 20px;
+                            line-height: 23px;
+                            letter-spacing: 1.4px;
+                        }
+                        .card_button {
+                            width: 187px;
+                            height: 52px;
+                            @include empty-btn-style;
+                        }
+                    }
+                }
+            }
+        }
+        .our_friends_btn {
+            @include fill-btn-style;
+            height: 52px;
+            width: 261px;
+            display: block;
+            margin: 0 auto;
+            margin-top: 60px;
+        }
+    }
+}

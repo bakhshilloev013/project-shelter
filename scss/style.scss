@@ -1,0 +1,26 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+// Base
+@import './base/variables';
+@import './base/mixins';
+
+// Blocks
+@import './blocks/promo';
+@import './blocks/about';
+@import './blocks/our-friends';
+
+// Base Media
+@import './base/media';
