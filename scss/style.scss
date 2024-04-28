@@ -19,12 +19,14 @@ body {
 @import './base/mixins';
 
 // Blocks
+@import './blocks/header';
 @import './blocks/promo';
 @import './blocks/about';
 @import './blocks/our_friends';
 @import './blocks/help';
 @import './blocks/in_addition';
 @import './blocks/footer';
+@import './blocks/pets';
 
 // Base Media
 @import './base/media';

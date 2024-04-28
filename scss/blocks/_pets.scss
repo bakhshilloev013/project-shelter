@@ -1,0 +1,82 @@
+.pets_header {
+    min-height: 120px;
+    width: 100%;
+    background-color: #fff;
+    .header_content {
+        .header_logo {
+            .header_logo_title,
+            .header_logo_subtitle {
+                color: #545454;
+            }
+        }
+        .header_menu {
+            li {
+                a {
+                    color: #545454;
+                    &:hover {
+                        transition: 0.3s all;
+                        color: #292929;
+                    }
+                    &:active {
+                        transition: 0s all;
+                    }
+                }
+                .active_link {
+                    color: #292929;
+                }
+            }
+        }
+    }
+}
+
+.pets {
+    min-height: calc(1342px + 120px);
+    width: 100%;
+    background-color: #f6f6f6;
+    .container {
+        padding-top: 200px;
+    }
+    .pets_content {
+        min-height: 1162px;
+        width: 100%;
+        .pets_title {
+            @include title-style;
+            text-align: center;
+        }
+        .pets_slider {
+            min-height: calc(930px + 45px + 52px);
+            width: 100%;
+            margin-top: 45px;
+            .slider_wrapper {
+                min-height: 930px;
+                width: 100%;
+                overflow: hidden;
+                .slider_content {
+                    min-height: 930px;
+                    width: 100%;
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-content: start;
+                    gap: 30px 40px;
+                    .slider_card {
+                        @include card-style;
+                    }
+                }
+            }
+            .slider_btns {
+                max-width: 340px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 0 auto;
+                margin-top: 45px;
+                button {
+                    @include slider-btn-style;
+                    &:nth-child(1), &:nth-child(2) {
+                        @include disable-slider-btn;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -38,37 +38,7 @@
                     gap: 90px;
                     transition: 0.3s all;
                     .slider_card {
-                        cursor: pointer;
-                        background-color: #fafafa;
-                        width: 270px;
-                        height: 435px;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                        transition: 0.3s all;
-                        .card_img {
-                            width: 100%;
-                        }
-                        .card_title {
-                            margin-top: 28px;
-                            text-align: center;
-                            color: rgb(84, 84, 84);
-                            font-size: 20px;
-                            line-height: 23px;
-                            letter-spacing: 1.4px;
-                        }
-                        .card_button {
-                            width: 187px;
-                            height: 52px;
-                            @include empty-btn-style;
-                        }
-                        &:hover {
-                            transition: 0.3s all;
-                            .card_button {
-                                background-color: #fddcc4;
-                                border-color: #fddcc4;
-                            }
-                        }
+                        @include card-style;
                     }
                 }
             }

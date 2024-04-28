@@ -20,30 +20,6 @@
     }
 }
 
-@mixin empty-btn-style {
-    cursor: pointer;
-    font-family: Georgia;
-    text-align: center;
-    border-radius: 100px;
-    margin-top: 30px;
-    border: 2px solid $primary-color;
-    background: none;
-    color: rgb(41, 41, 41);
-    font-size: 17px;
-    line-height: 130%;
-    letter-spacing: 1.2px;
-    transition: 0.3s all;
-    &:hover {
-        transition: 0.3s all;
-        background-color: #fddcc4;
-        border-color: #fddcc4;
-    }
-    &:active {
-        transition: 0.2s all;
-        scale: 0.95;
-    }
-}
-
 @mixin title-style {
     color: #545454;
     font-size: 35px;
@@ -52,6 +28,62 @@
     letter-spacing: 3.3px;
     text-align: left;
     margin: 0;
+}
+
+@mixin card-style {
+    cursor: pointer;
+    background-color: #fafafa;
+    width: 270px;
+    height: 435px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 9px;
+    transition: 0.3s all;
+    .card_img {
+        border-radius: 9px 9px 0 0;
+        width: 100%;
+    }
+    .card_title {
+        margin-top: 28px;
+        text-align: center;
+        color: rgb(84, 84, 84);
+        font-size: 20px;
+        line-height: 23px;
+        letter-spacing: 1.4px;
+    }
+    .card_button {
+        width: 187px;
+        height: 52px;
+        cursor: pointer;
+        font-family: Georgia;
+        text-align: center;
+        border-radius: 100px;
+        margin-top: 30px;
+        border: 2px solid $primary-color;
+        background: none;
+        color: rgb(41, 41, 41);
+        font-size: 17px;
+        line-height: 130%;
+        letter-spacing: 1.2px;
+        transition: 0.3s all;
+        &:hover {
+            transition: 0.3s all;
+            background-color: #fddcc4;
+            border-color: #fddcc4;
+        }
+        &:active {
+            transition: 0.2s all;
+            scale: 0.95;
+        }
+    }
+    &:hover {
+        transition: 0.3s all;
+        .card_button {
+            background-color: #fddcc4;
+            border-color: #fddcc4;
+        }
+    }
 }
 
 @mixin slider-btn-style {
