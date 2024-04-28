@@ -46,20 +46,23 @@
         .pets_slider {
             min-height: calc(930px + 45px + 52px);
             width: 100%;
-            margin-top: 45px;
+            margin-top: 60px;
             .slider_wrapper {
                 min-height: 930px;
                 width: 100%;
                 overflow: hidden;
                 .slider_content {
                     min-height: 930px;
-                    width: 100%;
-                    display: flex;
-                    flex-wrap: wrap;
-                    align-content: start;
-                    gap: 30px 40px;
+                    width: 300%;
+                    display: grid;
+                    grid-template-columns: repeat(4, minmax(270px, 0fr)); 
+                    grid-template-rows: repeat(2, auto); /* Два ряда */
+                    gap: 0px 40px;
                     .slider_card {
                         @include card-style;
+                        .card_title {
+                            letter-spacing: 1.4px;
+                        }
                     }
                 }
             }
@@ -69,7 +72,7 @@
                 justify-content: space-between;
                 align-items: center;
                 margin: 0 auto;
-                margin-top: 45px;
+                margin-top: 30px;
                 button {
                     @include slider-btn-style;
                 }
