@@ -72,9 +72,9 @@
                 margin-top: 45px;
                 button {
                     @include slider-btn-style;
-                    &:nth-child(1), &:nth-child(2) {
-                        @include disable-slider-btn;
-                    }
+                }
+                .slider_btn_disable {
+                    @include disable-slider-btn;
                 }
             }
         }

@@ -22,7 +22,7 @@
             .slider_arrow {
                 @include slider-btn-style;
             }
-            .disable_arrow {
+            .slider_btn_disable {
                 @include disable-slider-btn;
             }
             .slider_wrapper {

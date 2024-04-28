@@ -6,20 +6,15 @@ document.addEventListener('DOMContentLoaded', function () {
         link.addEventListener('click', function (e) {
             e.preventDefault();
 
-            if (this.getAttribute('href') === './pages/pets.html') {
-                location.href = './pages/pets.html';
+            if (this.getAttribute('href') === '../index.html') {
+                location.href = '../index.html';
+            } else if (this.getAttribute('href') === '../index.html#help') {
+                location.href = '../index.html#help';
             }
 
             document.querySelector(this.getAttribute('href')).scrollIntoView({
                 behavior: 'smooth',
             });
-        });
-    });
-
-    // Функционал плавной прокрутки кнопки главной страницы
-    document.querySelector('.promo_btn').addEventListener('click', (e) => {
-        document.querySelector('#our_friends').scrollIntoView({
-            behavior: 'smooth',
         });
     });
 });

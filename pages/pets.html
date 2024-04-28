@@ -154,8 +154,8 @@
                             </div>
                         </div>
                         <div class="slider_btns">
-                            <button class="slider_double_left"><<</button>
-                            <button class="slider_left"><</button>
+                            <button class="slider_double_left slider_btn_disable"><<</button>
+                            <button class="slider_left slider_btn_disable"><</button>
                             <button value="1" class="slider_num">1</button>
                             <button class="slider_right">></button>
                             <button class="slider_double_right">>></button>
@@ -223,25 +223,8 @@
             </div>
         </footer>
 
-        <script>
-            // Функционал лавной прокрутки по ссылкам в блоке навигации
-            document.querySelectorAll('.header_menu li a').forEach((link) => {
-                link.addEventListener('click', function (e) {
-                    e.preventDefault();
-
-                    if (this.getAttribute('href') === '../index.html') {
-                        location.href = '../index.html';
-                    } else if (this.getAttribute('href') === '../index.html#help') {
-                        location.href = '../index.html#help';
-                    }
-
-                    document
-                        .querySelector(this.getAttribute('href'))
-                        .scrollIntoView({
-                            behavior: 'smooth',
-                        });
-                });
-            });
+        <script src="../js/pets.js">
+            
         </script>
     </body>
 </html>
