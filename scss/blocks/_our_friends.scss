@@ -1,7 +1,7 @@
 .our_friends {
     min-height: 877px;
     width: 100%;
-    background-color: #fff;
+    background-color: #f6f6f6;
     .container {
         padding-top: 62px;
     }
@@ -29,18 +29,23 @@
                 width: calc(270px + 450px + 270px);
                 min-height: 435px;
                 overflow: hidden;
+                transition: 0.3s all;
                 .slider_content {
-                    width: 100%;
+                    width: 300%;
                     min-height: 100%;
                     display: flex;
-                    justify-content: space-between;
+                    align-items: center;
+                    gap: 90px;
+                    transition: 0.3s all;
                     .slider_card {
-                        background-color: #FAFAFA;
+                        cursor: pointer;
+                        background-color: #fafafa;
                         width: 270px;
                         height: 435px;
                         display: flex;
                         flex-direction: column;
                         align-items: center;
+                        transition: 0.3s all;
                         .card_img {
                             width: 100%;
                         }
@@ -56,6 +61,13 @@
                             width: 187px;
                             height: 52px;
                             @include empty-btn-style;
+                        }
+                        &:hover {
+                            transition: 0.3s all;
+                            .card_button {
+                                background-color: #fddcc4;
+                                border-color: #fddcc4;
+                            }
                         }
                     }
                 }

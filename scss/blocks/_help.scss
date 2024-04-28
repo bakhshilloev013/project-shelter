@@ -1,0 +1,39 @@
+.help {
+    min-height: 611px;
+    width: 100%;
+    .container {
+        padding-top: 80px;
+    }
+    .help_content {
+        min-height: 431px;
+        width: 100%;
+        .help_title {
+            @include title-style;
+            text-align: center;
+        }
+        .help_list {
+            min-height: 281px;
+            width: 100%;
+            margin-top: 60px;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: start;
+            justify-content: center;
+            gap: 60px 120px;
+            .help_item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                .item_title {
+                    color: rgb(84, 84, 84);
+                    font-family: Georgia;
+                    font-size: 20px;
+                    line-height: 115%;
+                    letter-spacing: 1.3px;
+                    text-align: center;
+                    margin-top: 30px;
+                }
+            }
+        }
+    }
+}

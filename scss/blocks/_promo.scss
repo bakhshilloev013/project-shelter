@@ -1,7 +1,8 @@
 .promo {
     min-height: 908px;
     width: 100%;
-    background: url('../../img/promo_bg.png') center center/cover no-repeat;
+    // background: url('../../img/promo_bg.png') center center/cover no-repeat;
+    background: linear-gradient(135deg, #513D2F, #1A1A1C);
     .container {
         padding-top: 30px;
     }
@@ -14,6 +15,7 @@
         .header_logo {
             // width: 184px;
             height: 100%;
+            text-decoration: none;
             .header_logo_title {
                 display: inline;
                 color: $primary-color;

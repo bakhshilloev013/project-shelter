@@ -5,6 +5,7 @@
 }
 
 body {
+    overflow-y: scroll;
     scroll-behavior: smooth;
 }
 
@@ -20,7 +21,10 @@ body {
 // Blocks
 @import './blocks/promo';
 @import './blocks/about';
-@import './blocks/our-friends';
+@import './blocks/our_friends';
+@import './blocks/help';
+@import './blocks/in_addition';
+@import './blocks/footer';
 
 // Base Media
 @import './base/media';

@@ -1,0 +1,61 @@
+.in_addition {
+    min-height: 462px;
+    width: 100%;
+    background-color: #f6f6f6;
+    .container {
+        padding-top: 80px;
+    }
+    .in_addition_content {
+        min-height: 282px;
+        max-width: 915px;
+        display: flex;
+        gap: 30px;
+        margin: 0 auto;
+        .in_addition_img {
+            height: 261px;
+            transform: translateY(10px)
+        }
+        .in_addition_info {
+            .in_addition_title {
+                @include title-style;
+                letter-spacing: 3.5px;
+            }
+            .in_addition_subtitle {
+                color: rgb(84, 84, 84);
+                font-family: Georgia;
+                font-size: 15px;
+                line-height: 110%;
+                letter-spacing: 1px;
+                margin-top: 20px;
+            }
+            .in_addition_card {
+                height: 43px;
+                width: 349px;
+                border-radius: 9px;
+                background-color: $primary-color;
+                padding-left: 15px;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                margin-top: 20px;
+                .card_number {
+                    display: flex;
+                    color: rgb(84, 84, 84);
+                    font-family: Georgia;
+                    font-size: 20px;
+                    line-height: 115%;
+                    letter-spacing: 1.3px;
+                    text-decoration: none;
+                }
+            }
+            .in_addition_descr {
+                color: rgb(178, 178, 178);
+                font-family: Arial;
+                font-style: italic;
+                font-size: 12px;
+                line-height: 18px;
+                margin-top: 20px;
+            }
+        }
+    }
+}
