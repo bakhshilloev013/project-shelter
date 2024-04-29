@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // Функционал плавной прокрутки по якорю
     const chevron = document.querySelector('.chevron');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 100) {
@@ -39,12 +40,13 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // Функционал пополнения и динамики слайдера
     const content = document.querySelector(
             '.our_friends_slider .slider_content'
         ),
         prev = document.querySelector('.our_friends_slider .slider_left'),
         next = document.querySelector('.our_friends_slider .slider_right');
-
+    
     let valueOfPets;
     let DB;
 
