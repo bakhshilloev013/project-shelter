@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
         ),
         prev = document.querySelector('.our_friends_slider .slider_left'),
         next = document.querySelector('.our_friends_slider .slider_right');
-    
+
     let valueOfPets;
     let DB;
 
@@ -109,7 +109,95 @@ document.addEventListener('DOMContentLoaded', function () {
             const parentIndex = e.target
                 .closest('.slider_card')
                 .getAttribute('data-index');
-            console.log(DB[parentIndex]);
-        }
+            showModal(DB[parentIndex], parentIndex);
+        } 
     });
+
+    function showModal(data, index) {
+        console.log(data);
+        const { name, age, breed, description, inoculations, diseases } = data;
+        console.log(name)
+        console.log(breed)
+        console.log(description)
+        console.log(age)
+        console.log(inoculations)
+        console.log(diseases)
+
+        const modal = document.querySelector('.modal'),
+              title = document.querySelector('.modal .modal_title'),
+              subtitle = document.querySelector('.modal .modal_subtitle'),
+              descr = document.querySelector('.modal .modal_descr'),
+              list = document.querySelector('.modal .modal_list'),
+              img = document.querySelector('.modal .modal_img'),
+              close = document.querySelector('.modal .modal_close');
+              
+        img.src = `img/pets/pets-${+index + 1}.png`;
+        title.textContent = name;
+        subtitle.textContent = breed;
+        descr.textContent = description;
+        list.innerHTML = `
+            <li>
+                <span class="list_title">Age:</span
+                ><span class="list_info">${age}</span>
+            </li>
+            <li>
+                <span class="list_title">Inoculations:</span
+                ><span class="list_info">${inoculations}</span>
+            </li>
+            <li>
+                <span class="list_title">Diseases:</span
+                ><span class="list_info">${diseases}</span>
+            </li>
+            <li>
+                <span class="list_title">Parasites:</span
+                ><span class="list_info">none</span>
+            </li>
+        `;
+
+        modal.style.display = 'flex';
+        close.addEventListener('click', e => {
+            modal.style.display = 'none';
+        })
+              
+                  
+
+
+    }
+
+
+    /*
+        <div class="modal_content">
+            <img src="img/pets/pets-1.png" alt="" class="modal_img" />
+            <div class="modal_info">
+                <button class="modal_close">x</button>
+                <div class="modal_title">Jennifer</div>
+                <div class="modal_subtitle">Dog - Labrador</div>
+                <div class="modal_descr">
+                    Jennifer is a sweet 2 months old Labrador that is
+                    patiently waiting to find a new forever home. This girl
+                    really enjoys being able to go outside to run and play,
+                    but won't hesitate to play up a storm in the house if
+                    she has all of her favorite toys.
+                </div>
+                <ul class="modal_list">
+                    <li>
+                        <span class="list_title">Age:</span
+                        ><span class="list_info">2 months</span>
+                    </li>
+                    <li>
+                        <span class="list_title">Inoculations:</span
+                        ><span class="list_info">none</span>
+                    </li>
+                    <li>
+                        <span class="list_title">Diseases:</span
+                        ><span class="list_info">none</span>
+                    </li>
+                    <li>
+                        <span class="list_title">Parasites:</span
+                        ><span class="list_info">none</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    */
 });

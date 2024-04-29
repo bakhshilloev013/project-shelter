@@ -4,20 +4,78 @@
     top: 0;
     position: fixed;
     z-index: 50;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     background-color: rgba(246, 246, 246, 0.5);
     .modal_content {
         min-height: 500px;
         width: 900px;
-        border: 1px solid red;
         position: relative;
         background-color: #fff;
+        border-radius: 9px;
         display: flex;
-        align-items: center;
+        align-items: start;
+        justify-content: center;
+        gap: 29px;
+        .modal_img {
+            height: 500px;
+        }
         .modal_info {
             max-width: 351px;
+            margin-top: 50px;
+            .modal_title {
+                @include title-style;
+                color: #000;
+            }
+            .modal_subtitle {
+                color: #000;
+                font-family: Georgia;
+                font-size: 20px;
+                font-weight: 400;
+                line-height: 115%;
+                letter-spacing: 1.1px;
+                text-align: left;
+                margin-top: 10px;
+            }
+            .modal_descr {
+                margin-top: 40px;
+                /* h5 */
+                color: #000;
+                font-family: Georgia;
+                font-size: 15px;
+                font-weight: 400;
+                line-height: 110%;
+                letter-spacing: 1.3px;
+                text-align: left;
+            }
+            .modal_list {
+                margin: 0;
+                padding-left: 14px;
+                margin-top: 40px;
+                li {
+                    &::marker {
+                        color: $primary-color;
+                    }
+                    .list_title {
+                        color: #000;
+                        font-family: Georgia;
+                        font-size: 15px;
+                        font-weight: 600;
+                        line-height: 110%;
+                        letter-spacing: 1.3px;
+                        margin-right: 3px;
+                    }
+                    .list_info {
+                        color: #000;
+                        font-family: Georgia;
+                        font-size: 15px;
+                        font-weight: 400;
+                        line-height: 110%;
+                        letter-spacing: 1.3px;
+                    }
+                }
+            }
             .modal_close {
                 position: absolute;
                 right: -50px;
