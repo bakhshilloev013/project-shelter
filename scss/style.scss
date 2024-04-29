@@ -7,6 +7,34 @@
 body {
     overflow-y: scroll;
     scroll-behavior: smooth;
+    .chevron {
+        position: fixed;
+        right: 35px;
+        bottom: 35px;
+        height: 52px;
+        width: 52px;
+        border-radius: 100%;
+        border: 2px solid #f1cdb3;
+        background-color: #f1cdb3;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        color: #fff;
+        animation: impulse 1s infinite;
+    }
+}
+
+@keyframes impulse {
+    from {
+        scale: 1;
+    }
+    50% {
+        scale: 1.2;
+    }
+    to {
+        scale: 1;
+    }
 }
 
 .container {

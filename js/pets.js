@@ -17,4 +17,20 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     });
+
+    const chevron = document.querySelector('.chevron');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 200) {
+            chevron.style.display = 'flex';
+        } else {
+            chevron.style.display = 'none';
+        }
+
+        chevron.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelector('#top').scrollIntoView({
+                behavior: 'smooth',
+            });
+        });
+    });
 });

@@ -31,7 +31,7 @@
         <link rel="stylesheet" href="../css/style.min.css" />
         <title>Shelter</title>
     </head>
-    <body>
+    <body id="top">
         <header class="header pets_header">
             <div class="container">
                 <div class="header_content">
@@ -151,7 +151,7 @@
                                         Learn more
                                     </button>
                                 </div>
-<!-- 
+                                <!-- 
                                 <div class="slider_card">
                                     <img
                                         src="../img/pets/pets-7.png"
@@ -246,8 +246,14 @@
                             </div>
                         </div>
                         <div class="slider_btns">
-                            <button class="slider_double_left slider_btn_disable">&lt;&lt;</button>
-                            <button class="slider_left slider_btn_disable">&lt;</button>
+                            <button
+                                class="slider_double_left slider_btn_disable"
+                            >
+                                &lt;&lt;
+                            </button>
+                            <button class="slider_left slider_btn_disable">
+                                &lt;
+                            </button>
                             <button value="1" class="slider_num">1</button>
                             <button class="slider_right">></button>
                             <button class="slider_double_right">>></button>
@@ -315,8 +321,10 @@
             </div>
         </footer>
 
-        <script src="../js/pets.js">
-            
-        </script>
+        <a href="#top" class="chevron">
+            <i class="fa-solid fa-chevron-up"></i>
+        </a>
+
+        <script src="../js/pets.js"></script>
     </body>
 </html>

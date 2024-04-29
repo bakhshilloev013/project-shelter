@@ -1,10 +1,7 @@
 'use strict';
 
-// import firebase from 'firebase/app';
-// import 'firebase/database';
-
 document.addEventListener('DOMContentLoaded', function () {
-    // Функционал лавной прокрутки по ссылкам в блоке навигации
+    // Функционал плавной прокрутки по ссылкам в блоке навигации
     document.querySelectorAll('.header_menu li a').forEach((link) => {
         link.addEventListener('click', function (e) {
             e.preventDefault();
@@ -26,6 +23,22 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    const chevron = document.querySelector('.chevron');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+            chevron.style.display = 'flex';
+        } else {
+            chevron.style.display = 'none';
+        }
+
+        chevron.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelector('#top').scrollIntoView({
+                behavior: 'smooth',
+            });
+        });
+    });
+
     const content = document.querySelector(
             '.our_friends_slider .slider_content'
         ),
@@ -33,12 +46,14 @@ document.addEventListener('DOMContentLoaded', function () {
         next = document.querySelector('.our_friends_slider .slider_right');
 
     let valueOfPets;
+    let DB;
 
     fetch('../data/pets.json')
         .then((response) => response.json())
         .then((json) => renderContent(json));
 
     function renderContent(data) {
+        DB = data;
         valueOfPets = data.length;
         content.style.cssText = `width: ${
             valueOfPets * 270 + (valueOfPets - 1) * 90
@@ -69,11 +84,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         value = value - 270 - 90;
         if (value < 0) {
-            console.log('did');
             prev.classList.remove('slider_btn_disable');
         }
 
-        console.log(value);
         content.style.cssText += `transform: translateX(${value}px)`;
     });
 
@@ -86,7 +99,15 @@ document.addEventListener('DOMContentLoaded', function () {
         if (value > -1800) {
             next.classList.remove('slider_btn_disable');
         }
-        console.log(value);
         content.style.cssText += `transform: translateX(${value}px)`;
+    });
+
+    content.addEventListener('click', (e) => {
+        if (e.target.tagName === 'BUTTON') {
+            const parentIndex = e.target
+                .closest('.slider_card')
+                .getAttribute('data-index');
+            console.log(DB[parentIndex]);
+        }
     });
 });
