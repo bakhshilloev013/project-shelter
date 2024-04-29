@@ -24,6 +24,7 @@
         .modal_info {
             max-width: 351px;
             margin-top: 50px;
+            overflow: hidden;
             .modal_title {
                 @include title-style;
                 color: #000;

@@ -85,8 +85,9 @@ document.addEventListener('DOMContentLoaded', function () {
     let value = 0;
     next.addEventListener('click', (e) => {
         let widthOfContent = window.getComputedStyle(content).width;
-        let widthOfWrapper =  window.getComputedStyle(document.querySelector('.slider_wrapper')).width;
-        if (value === -(parseInt(widthOfContent) - parseInt(widthOfWrapper))) {
+        let widthOfWrapper = window.getComputedStyle(document.querySelector('.slider_wrapper')).width;
+        console.log(-(parseInt(widthOfContent) - parseInt(widthOfWrapper)))
+        if (value <= -(parseInt(widthOfContent) - parseInt(widthOfWrapper))) {
             next.classList.add('slider_btn_disable');
             return;
         }
@@ -159,5 +160,13 @@ document.addEventListener('DOMContentLoaded', function () {
             modal.style.display = 'none';
         })
     }
+
+    const menu = document.querySelector('.header_menu'),
+          btn = document.querySelector('.header_burger');
+          
+    btn.addEventListener('click', e => {
+        btn.classList.toggle('header_burger_active');
+        menu.classList.toggle('header_menu_active');
+    })
 
 });

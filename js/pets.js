@@ -118,4 +118,12 @@ document.addEventListener('DOMContentLoaded', function () {
         })
     }
 
+    const menu = document.querySelector('.header_menu'),
+          btn = document.querySelector('.header_burger');
+          
+    btn.addEventListener('click', e => {
+        btn.classList.toggle('header_burger_active');
+        menu.classList.toggle('header_menu_active');
+    })
+
 });
