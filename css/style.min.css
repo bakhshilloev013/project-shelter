@@ -320,6 +320,7 @@ body {
   gap: 90px;
   -webkit-transition: 0.3s all;
   transition: 0.3s all;
+  scroll-behavior: smooth;
 }
 .our_friends .our_friends_content .our_friends_slider .slider_wrapper .slider_content .slider_card {
   cursor: pointer;
