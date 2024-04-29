@@ -23,9 +23,15 @@
             align-items: center;
             .promo_info {
                 margin: 0;
+                .promo_btn {
+                    display: block;
+                    margin: 0 auto;
+                    margin-top: 42px;
+                }
             }
             .promo_img {
                 margin-top: 100px;
+                width: 569px;
             }
         }
     }
@@ -40,34 +46,85 @@
             }
             .about_info {
                 order: 1;
+                margin-top: 0;
+                .about_title {
+                    font-size: 35px;
+                }
+            }
+        }
+    }
+    .our_friends {
+        .container {
+            padding-top: 80px;
+        }
+        .our_friends_content {
+            .our_friends_title {
+                font-size: 35px;
+            }
+            .our_friends_slider {
+                gap: 12px;
+                .slider_wrapper {
+                    .slider_content {
+                        gap: 40px;
+                    }
+                }
             }
         }
     }
     .help {
         min-height: 779px;
+        .container {
+            padding-top: 80px;
+        }
+        .help_content {
+            .help_title {
+                font-size: 35px;
+            }
+            .help_list {
+                display: grid;
+                grid-template-columns: repeat(3, 170px);
+                gap: 55px 60px;
+            }
+        }
     }
     .in_addition {
         min-height: 783px;
+        .container {
+            padding-top: 80px;
+        }
         .in_addition_content {
             flex-direction: column;
             align-items: center;
             .in_addition_img {
                 height: auto;
+                margin-top: 15px;
                 order: 2;
             }
             .in_addition_info {
                 max-width: 380px;
                 order: 1;
+                .in_addition_title {
+                    font-size: 35px;
+                }
             }
         }
     }
     .footer {
+        .container {
+            padding-top: 30px;
+        }
         .footer_content {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             align-content: start;
             gap: 65px 60px;
+            .footer_item {
+                margin-top: 0;
+                .footer_title {
+                    font-size: 35px;
+                }
+            }
             .footer_img {
                 display: block;
                 margin: 0 auto;
@@ -85,12 +142,16 @@
             .modal_info {
                 max-width: 260px;
                 margin-top: 10px;
+                .modal_title {
+                    font-size: 35px;
+                }
                 .modal_descr {
                     font-size: 13px;
                     margin-top: 20px;
                 }
                 .modal_list {
-                    margin-top: 20px;
+                    margin-top: 16px;
+                    gap: 5px;
                 }
             }
         }

@@ -61,8 +61,9 @@ document.addEventListener('DOMContentLoaded', function () {
     function renderContent(data) {
         DB = data;
         valueOfPets = data.length;
+        let widthOfGap = window.getComputedStyle(content).gap;
         content.style.cssText = `width: ${
-            valueOfPets * 270 + (valueOfPets - 1) * 90
+            valueOfPets * 270 + (valueOfPets - 1) * parseInt(widthOfGap)
         }px`;
         content.innerHTML = '';
         data.forEach((item, i) => {
@@ -86,12 +87,13 @@ document.addEventListener('DOMContentLoaded', function () {
     next.addEventListener('click', (e) => {
         let widthOfContent = window.getComputedStyle(content).width;
         let widthOfWrapper = window.getComputedStyle(document.querySelector('.slider_wrapper')).width;
+        let widthOfGap = window.getComputedStyle(content).gap;
         console.log(-(parseInt(widthOfContent) - parseInt(widthOfWrapper)))
         if (value <= -(parseInt(widthOfContent) - parseInt(widthOfWrapper))) {
             next.classList.add('slider_btn_disable');
             return;
         }
-        value = value - 270 - 90;
+        value = value - 270 - parseInt(widthOfGap);
         if (value < 0) {
             prev.classList.remove('slider_btn_disable');
         }
@@ -100,11 +102,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     prev.addEventListener('click', (e) => {
+        let widthOfGap = window.getComputedStyle(content).gap;
         if (value === 0) {
             prev.classList.add('slider_btn_disable');
             return;
         }
-        value = value + 270 + 90;
+        value = value + 270 + parseInt(widthOfGap);
         if (value > -1800) {
             next.classList.remove('slider_btn_disable');
         }

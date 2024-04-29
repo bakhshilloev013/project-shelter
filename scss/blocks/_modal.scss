@@ -17,7 +17,7 @@
         display: flex;
         align-items: start;
         justify-content: center;
-        gap: 29px;
+        gap: 20px;
         .modal_img {
             height: 500px;
         }
@@ -54,7 +54,11 @@
                 margin: 0;
                 padding-left: 14px;
                 margin-top: 40px;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
                 li {
+
                     &::marker {
                         color: $primary-color;
                     }
@@ -79,8 +83,8 @@
             }
             .modal_close {
                 position: absolute;
-                right: -50px;
-                top: -50px;
+                right: -45px;
+                top: -52px;
                 @include slider-btn-style;
                 font-size: 25px;
             }
