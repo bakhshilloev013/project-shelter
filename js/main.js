@@ -16,6 +16,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    document.querySelector('.our_friends_btn').addEventListener('click', e => {
+        location.href = '../pages/pets.html';
+    })
+
     // Функционал плавной прокрутки кнопки главной страницы
     document.querySelector('.promo_btn').addEventListener('click', (e) => {
         document.querySelector('#our_friends').scrollIntoView({
