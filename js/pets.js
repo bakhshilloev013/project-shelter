@@ -15,6 +15,12 @@ document.addEventListener('DOMContentLoaded', function () {
             document.querySelector(this.getAttribute('href')).scrollIntoView({
                 behavior: 'smooth',
             });
+            document
+                .querySelector('.header_menu')
+                .classList.remove('header_menu_active');
+            document
+                .querySelector('.header_burger')
+                .classList.remove('header_burger_active');
         });
     });
 
@@ -36,17 +42,27 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Функционал пололнения и динамики слайдера
-    const sliderWrapper = document.querySelector('.pets_slider .slider_wrapper'),
-          sliderContent = document.querySelector('.pets_slider .slider_content'),
-          sliderDoubleLeft = document.querySelector('.pets_slider .slider_double_left'),
-          sliderLeft = document.querySelector('.pets_slider .slider_left'),
-          sliderPageNum = document.querySelector('.pets_slider .slider_num'),
-          sliderRight = document.querySelector('.pets_slider .slider_double_right'),
-          sliderDoubleRight = document.querySelector('.pets_slider .slider_double_right');
-          
+    const sliderWrapper = document.querySelector(
+            '.pets_slider .slider_wrapper'
+        ),
+        sliderContent = document.querySelector('.pets_slider .slider_content'),
+        sliderDoubleLeft = document.querySelector(
+            '.pets_slider .slider_double_left'
+        ),
+        sliderLeft = document.querySelector('.pets_slider .slider_left'),
+        sliderPageNum = document.querySelector('.pets_slider .slider_num'),
+        sliderRight = document.querySelector(
+            '.pets_slider .slider_double_right'
+        ),
+        sliderDoubleRight = document.querySelector(
+            '.pets_slider .slider_double_right'
+        );
+
     let valueOfPets;
     let DB;
-    fetch('../data/pets.json').then(response => response.json()).then(json => renderContent(json))
+    fetch('../data/pets.json')
+        .then((response) => response.json())
+        .then((json) => renderContent(json));
 
     function renderContent(data) {
         valueOfPets = data.length;
@@ -59,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
             sliderContent.innerHTML += `
                 <div data-index=${i} class="slider_card">
                     <img
-                        src="../img/pets/pets-${i+1}.png"
+                        src="../img/pets/pets-${i + 1}.png"
                         alt=""
                         class="card_img"
                     />
@@ -69,26 +85,26 @@ document.addEventListener('DOMContentLoaded', function () {
                     </button>
                 </div>
             `;
-        })
+        });
     }
 
-    sliderContent.addEventListener('click', e => {
+    sliderContent.addEventListener('click', (e) => {
         const card = e.target.closest('.slider_card');
         const parentIndex = card.getAttribute('data-index');
         showModal(DB[parentIndex], parentIndex);
-    })
+    });
 
     function showModal(data, index) {
         const { name, age, breed, description, inoculations, diseases } = data;
 
         const modal = document.querySelector('.modal'),
-              title = document.querySelector('.modal .modal_title'),
-              subtitle = document.querySelector('.modal .modal_subtitle'),
-              descr = document.querySelector('.modal .modal_descr'),
-              list = document.querySelector('.modal .modal_list'),
-              img = document.querySelector('.modal .modal_img'),
-              close = document.querySelector('.modal .modal_close');
-              
+            title = document.querySelector('.modal .modal_title'),
+            subtitle = document.querySelector('.modal .modal_subtitle'),
+            descr = document.querySelector('.modal .modal_descr'),
+            list = document.querySelector('.modal .modal_list'),
+            img = document.querySelector('.modal .modal_img'),
+            close = document.querySelector('.modal .modal_close');
+
         img.src = `../img/pets/pets-${+index + 1}.png`;
         title.textContent = name;
         subtitle.textContent = breed;
@@ -113,17 +129,16 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
 
         modal.style.display = 'flex';
-        close.addEventListener('click', e => {
+        close.addEventListener('click', (e) => {
             modal.style.display = 'none';
-        })
+        });
     }
 
     const menu = document.querySelector('.header_menu'),
-          btn = document.querySelector('.header_burger');
-          
-    btn.addEventListener('click', e => {
+        btn = document.querySelector('.header_burger');
+
+    btn.addEventListener('click', (e) => {
         btn.classList.toggle('header_burger_active');
         menu.classList.toggle('header_menu_active');
-    })
-
+    });
 });

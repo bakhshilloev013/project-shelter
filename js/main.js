@@ -13,12 +13,20 @@ document.addEventListener('DOMContentLoaded', function () {
             document.querySelector(this.getAttribute('href')).scrollIntoView({
                 behavior: 'smooth',
             });
+            document
+                .querySelector('.header_menu')
+                .classList.remove('header_menu_active');
+            document
+                .querySelector('.header_burger')
+                .classList.remove('header_burger_active');
         });
     });
 
-    document.querySelector('.our_friends_btn').addEventListener('click', e => {
-        location.href = '../pages/pets.html';
-    })
+    document
+        .querySelector('.our_friends_btn')
+        .addEventListener('click', (e) => {
+            location.href = '../pages/pets.html';
+        });
 
     // Функционал плавной прокрутки кнопки главной страницы
     document.querySelector('.promo_btn').addEventListener('click', (e) => {
@@ -46,8 +54,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Функционал пополнения и динамики слайдера
     const content = document.querySelector(
-            '.our_friends_slider .slider_content'
-        ),
+        '.our_friends_slider .slider_content'
+    ),
         prev = document.querySelector('.our_friends_slider .slider_left'),
         next = document.querySelector('.our_friends_slider .slider_right');
 
@@ -62,9 +70,8 @@ document.addEventListener('DOMContentLoaded', function () {
         DB = data;
         valueOfPets = data.length;
         let widthOfGap = window.getComputedStyle(content).gap;
-        content.style.cssText = `width: ${
-            valueOfPets * 270 + (valueOfPets - 1) * parseInt(widthOfGap)
-        }px`;
+        content.style.cssText = `width: ${valueOfPets * 270 + (valueOfPets - 1) * parseInt(widthOfGap)
+            }px`;
         content.innerHTML = '';
         data.forEach((item, i) => {
             content.innerHTML += `
@@ -86,9 +93,11 @@ document.addEventListener('DOMContentLoaded', function () {
     let value = 0;
     next.addEventListener('click', (e) => {
         let widthOfContent = window.getComputedStyle(content).width;
-        let widthOfWrapper = window.getComputedStyle(document.querySelector('.slider_wrapper')).width;
+        let widthOfWrapper = window.getComputedStyle(
+            document.querySelector('.slider_wrapper')
+        ).width;
         let widthOfGap = window.getComputedStyle(content).gap;
-        console.log(-(parseInt(widthOfContent) - parseInt(widthOfWrapper)))
+        console.log(value - 270 - parseInt(widthOfGap));
         if (value <= -(parseInt(widthOfContent) - parseInt(widthOfWrapper))) {
             next.classList.add('slider_btn_disable');
             return;
@@ -108,19 +117,17 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
         value = value + 270 + parseInt(widthOfGap);
-        if (value > -1800) {
+        if (value < 0) {
             next.classList.remove('slider_btn_disable');
         }
         content.style.cssText += `transform: translateX(${value}px)`;
     });
 
     content.addEventListener('click', (e) => {
-        if (e.target.tagName === 'BUTTON') {
-            const parentIndex = e.target
-                .closest('.slider_card')
-                .getAttribute('data-index');
-            showModal(DB[parentIndex], parentIndex);
-        } 
+        const parentIndex = e.target
+            .closest('.slider_card')
+            .getAttribute('data-index');
+        showModal(DB[parentIndex], parentIndex);
     });
 
     function showModal(data, index) {
@@ -128,13 +135,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const { name, age, breed, description, inoculations, diseases } = data;
 
         const modal = document.querySelector('.modal'),
-              title = document.querySelector('.modal .modal_title'),
-              subtitle = document.querySelector('.modal .modal_subtitle'),
-              descr = document.querySelector('.modal .modal_descr'),
-              list = document.querySelector('.modal .modal_list'),
-              img = document.querySelector('.modal .modal_img'),
-              close = document.querySelector('.modal .modal_close');
-              
+            title = document.querySelector('.modal .modal_title'),
+            subtitle = document.querySelector('.modal .modal_subtitle'),
+            descr = document.querySelector('.modal .modal_descr'),
+            list = document.querySelector('.modal .modal_list'),
+            img = document.querySelector('.modal .modal_img'),
+            close = document.querySelector('.modal .modal_close');
+
         img.src = `img/pets/pets-${+index + 1}.png`;
         title.textContent = name;
         subtitle.textContent = breed;
@@ -159,17 +166,23 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
 
         modal.style.display = 'flex';
-        close.addEventListener('click', e => {
+        close.addEventListener('click', (e) => {
             modal.style.display = 'none';
-        })
+        });
     }
 
     const menu = document.querySelector('.header_menu'),
-          btn = document.querySelector('.header_burger');
-          
-    btn.addEventListener('click', e => {
+        btn = document.querySelector('.header_burger');
+
+    btn.addEventListener('click', (e) => {
         btn.classList.toggle('header_burger_active');
         menu.classList.toggle('header_menu_active');
-    })
+    });
 
+    document.body.addEventListener('click', e => {
+        if (!e.target.closest('.header_menu') && !e.target.closest('.header_burger')) {
+            menu.classList.remove('header_menu_active');
+            btn.classList.remove('header_burger_active');
+        }
+    })
 });

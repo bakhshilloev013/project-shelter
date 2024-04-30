@@ -156,6 +156,21 @@
             }
         }
     }
+    .pets {
+        .pets_content {
+            .pets_slider {
+                min-height: calc(1365px + 168px);
+                .slider_wrapper {
+                    max-width: 580px;
+                    margin: 0 auto;
+                    .slider_content {
+                        grid-template-columns: repeat(3, minmax(270px, 0fr));
+                        gap: 30px 40px;
+                    }
+                }
+            }
+        }
+    }
 }
 
 @media (max-width: 767px) {
@@ -171,15 +186,15 @@
                 height: 100vh;
                 padding: 39px;
                 position: fixed;
-                top: -200%;
-                right: 0;
+                top: 0;
+                right: -300%;
                 z-index: 55;
                 background-color: rgba(41, 41, 41, 0.5);
                 transition: 0.3s all;
             }
             .header_menu_active {
                 transition: 0.3s all;
-                top: 0;
+                right: 0;
             }
             .header_burger {
                 cursor: pointer;
@@ -358,7 +373,9 @@
                 flex-wrap: wrap;
                 justify-content: center;
                 gap: 20px 80px;
+                // padding-left: 15px;
                 .slider_wrapper {
+                    max-width: 270px;
                     order: 1;
                 }
                 .slider_arrow {
@@ -381,11 +398,14 @@
             }
             .help_list {
                 grid-template-columns: repeat(2, 130px);
-                gap: 30px 0;
+                gap: 30px;
                 margin-top: 42px;
                 .help_item {
                     height: 87px;
                     width: 130px;
+                    .item_img {
+                        height: 50px;
+                    }
                     .item_title {
                         font-size: 15px;
                         margin-top: 20px;
@@ -400,6 +420,7 @@
             padding-top: 42px;
         }
         .in_addition_content {
+            gap: 0;
             .in_addition_info {
                 max-width: 300px;
                 .in_addition_title,
@@ -410,6 +431,9 @@
                 .in_addition_title {
                     font-size: 25px;
                 }
+                .in_addition_subtitle {
+                    letter-spacing: normal;
+                }
                 .in_addition_card {
                     max-width: 281px;
                     .card_number {
@@ -419,6 +443,7 @@
             }
             .in_addition_img {
                 width: 260px;
+                margin-top: 35px;
             }
         }
     }
@@ -429,6 +454,7 @@
                 .footer_title {
                     text-align: center;
                     font-size: 25px;
+                    letter-spacing: 3px;
                 }
                 &:nth-child(2) {
                     .footer_info {
