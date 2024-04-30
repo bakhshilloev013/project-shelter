@@ -287,19 +287,29 @@
         }
     }
     .promo {
+        min-height: 823px;
+        .container {
+            padding-top: 150px;
+        }
         .promo_content {
+            min-height: 673px;
+            justify-content: start;
+            margin-top: 0;
             .promo_info {
+                height: auto;
                 .promo_title {
                     text-align: center;
                     font-size: 25px;
                 }
                 .promo_descr {
+                    font-size: 14.3px;
                     text-align: center;
+                    letter-spacing: 0;
                 }
                 .promo_btn {
                     display: block;
                     margin: 0 auto;
-                    margin-top: 42px;
+                    margin-top: 45px;
                 }
             }
             .promo_img {
@@ -321,8 +331,10 @@
             .about_info {
                 margin: 0;
                 .about_title {
+                    width: 100%;
                     text-align: center;
                     font-size: 25px;
+                    letter-spacing: 2px;
                 }
                 .about_descr {
                     font-size: 15px;
