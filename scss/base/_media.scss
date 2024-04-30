@@ -190,7 +190,7 @@
                 width: 30px;
                 background: none;
                 border: none;
-                position: fixed;
+                position: absolute;
                 z-index: 56;
                 top: 30px;
                 right: 30px;
@@ -269,7 +269,6 @@
             }
         }
     }
-    
 }
 
 @media (max-width: 576px) {
@@ -323,6 +322,7 @@
                 margin: 0;
                 .about_title {
                     text-align: center;
+                    font-size: 25px;
                 }
                 .about_descr {
                     font-size: 15px;
@@ -338,6 +338,7 @@
         .our_friends_content {
             .our_friends_title {
                 letter-spacing: 1.2px;
+                font-size: 25px;
             }
             .our_friends_slider {
                 margin-top: 42px;
@@ -352,6 +353,9 @@
                     order: 2;
                 }
             }
+            .our_friends_btn {
+                margin-top: 42px;
+            }
         }
     }
     .help {
@@ -360,6 +364,9 @@
             padding-top: 42px;
         }
         .help_content {
+            .help_title {
+                font-size: 25px;
+            }
             .help_list {
                 grid-template-columns: repeat(2, 130px);
                 gap: 30px 0;
@@ -383,8 +390,13 @@
         .in_addition_content {
             .in_addition_info {
                 max-width: 300px;
-                .in_addition_title, .in_addition_subtitle, .in_addition_descr {
+                .in_addition_title,
+                .in_addition_subtitle,
+                .in_addition_descr {
                     text-align: center;
+                }
+                .in_addition_title {
+                    font-size: 25px;
                 }
                 .in_addition_card {
                     max-width: 281px;
@@ -404,6 +416,7 @@
             .footer_item {
                 .footer_title {
                     text-align: center;
+                    font-size: 25px;
                 }
                 &:nth-child(2) {
                     .footer_info {
@@ -446,6 +459,31 @@
                 }
                 .modal_list {
                     margin-top: 24px;
+                }
+            }
+        }
+    }
+    .pets {
+        .container {
+            padding-top: 162px;
+        }
+        .pets_content {
+            .pets_title {
+                letter-spacing: 1.2px;
+            }
+            .pets_slider {
+                min-height: calc(1642px - 148px);
+                margin-top: 42px;
+                .slider_wrapper {
+                    .slider_content {
+                        min-height: 1323px;
+                        gap: 0 30px;
+                        grid-template-columns: repeat(3, 1fr);
+                        // grid-template-rows: repeat(3, 270px);
+                    }
+                }
+                .slider_btns {
+                    margin-top: 42px;
                 }
             }
         }
