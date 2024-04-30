@@ -141,4 +141,11 @@ document.addEventListener('DOMContentLoaded', function () {
         btn.classList.toggle('header_burger_active');
         menu.classList.toggle('header_menu_active');
     });
+
+    document.body.addEventListener('click', e => {
+        if (!e.target.closest('.header_menu') && !e.target.closest('.header_burger')) {
+            menu.classList.remove('header_menu_active');
+            btn.classList.remove('header_burger_active');
+        }
+    })
 });
