@@ -70,17 +70,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function renderContent(data) {
         DB = data;
-        valueOfPets = data.length;
+        valueOfPets = DB.length;
         let widthOfGap = window.getComputedStyle(content).gap;
         content.style.cssText = `width: ${
             valueOfPets * 270 + (valueOfPets - 1) * parseInt(widthOfGap)
         }px`;
         content.innerHTML = '';
-        data.forEach((item, i) => {
+
+        let index = 0;
+        DB.forEach((item, i) => {
+            if (index === 8) {
+                index = 0;
+                DB[index].img = `img/pets/pets-${index + 1}.png`;
+            } else {
+                DB[index].img = `img/pets/pets-${index + 1}.png`;
+            }
             content.innerHTML += `
             <div data-index=${i} class="slider_card">
                 <img
-                    src="img/pets/pets-${i + 1}.png"
+                    src="img/pets/pets-${index + 1}.png"
                     alt=""
                     class="card_img"
                 />
@@ -90,6 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 </button>
             </div>
             `;
+            index++;
         });
     }
 
@@ -127,14 +136,14 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     content.addEventListener('click', (e) => {
-        const parentIndex = e.target
-            .closest('.slider_card')
-            .getAttribute('data-index');
-        showModal(DB[parentIndex], parentIndex);
+        const parent = e.target.closest('.slider_card');
+        const parentIndex = parent.getAttribute('data-index');
+        const urlToImg = parent.querySelector('.card_img').getAttribute('src');
+
+        showModal(DB[parentIndex], urlToImg);
     });
 
-    function showModal(data, index) {
-        console.log(data);
+    function showModal(data, urlToImg) {
         const { name, age, breed, description, inoculations, diseases } = data;
 
         const modal = document.querySelector('.modal'),
@@ -145,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function () {
             img = document.querySelector('.modal .modal_img'),
             close = document.querySelector('.modal .modal_close');
 
-        img.src = `img/pets/pets-${+index + 1}.png`;
+        img.src = urlToImg;
         title.textContent = name;
         subtitle.textContent = breed;
         descr.textContent = description;

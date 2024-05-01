@@ -74,30 +74,40 @@ document.addEventListener('DOMContentLoaded', function () {
         sliderContent.style.cssText = `
             width: ${valueOfPets * 270 + (valueOfPets - 1) * 90}px
         `;
+        let index = 0;
         DB.forEach((item, i) => {
+            if (index === 8) {
+                index = 0;
+                DB[index].img = `../img/pets/pets-${index + 1}.png`;
+            } else {
+                DB[index].img = `../img/pets/pets-${index + 1}.png`;
+            }
             sliderContent.innerHTML += `
-                <div data-index=${i} class="slider_card">
-                    <img
-                        src="../img/pets/pets-${i + 1}.png"
-                        alt=""
-                        class="card_img"
-                    />
-                    <div class="card_title">${item.name}</div>
-                    <button class="card_button">
-                        Learn more
-                    </button>
-                </div>
+            <div data-index=${i} class="slider_card">
+                <img
+                    src="../img/pets/pets-${index + 1}.png"
+                    alt=""
+                    class="card_img"
+                />
+                <div class="card_title">${item.name}</div>
+                <button class="card_button">
+                    Learn more
+                </button>
+            </div>
             `;
+            index++;
         });
     }
 
     sliderContent.addEventListener('click', (e) => {
-        const card = e.target.closest('.slider_card');
-        const parentIndex = card.getAttribute('data-index');
-        showModal(DB[parentIndex], parentIndex);
+        const parent = e.target.closest('.slider_card');
+        const parentIndex = parent.getAttribute('data-index');
+        const urlToImg = parent.querySelector('.card_img').getAttribute('src');
+
+        showModal(DB[parentIndex], urlToImg);
     });
 
-    function showModal(data, index) {
+    function showModal(data, urlToImg) {
         const { name, age, breed, description, inoculations, diseases } = data;
 
         const modal = document.querySelector('.modal'),
@@ -108,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function () {
             img = document.querySelector('.modal .modal_img'),
             close = document.querySelector('.modal .modal_close');
 
-        img.src = `../img/pets/pets-${+index + 1}.png`;
+        img.src = urlToImg;
         title.textContent = name;
         subtitle.textContent = breed;
         descr.textContent = description;
