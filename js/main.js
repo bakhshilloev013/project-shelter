@@ -2,7 +2,8 @@
 
 document.addEventListener('DOMContentLoaded', function () {
     // Функционал плавной прокрутки по ссылкам в блоке навигации
-    document.querySelectorAll('.header_menu li a').forEach((link) => {
+    const navLinks = document.querySelectorAll('.header_menu li a');
+    navLinks.forEach((link) => {
         link.addEventListener('click', function (e) {
             e.preventDefault();
 
@@ -10,7 +11,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 location.href = './pages/pets.html';
             }
 
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
+            const selector = link.getAttribute('href');
+            const scrollBlock = document.querySelector(selector);
+            scrollBlock.scrollIntoView({
                 behavior: 'smooth',
             });
             document
@@ -22,11 +25,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    document
-        .querySelector('.our_friends_btn')
-        .addEventListener('click', (e) => {
-            location.href = '../pages/pets.html';
-        });
+    const btnToSecondPage = document.querySelector('.our_friends_btn');
+    btnToSecondPage.addEventListener('click', (e) => {
+        location.href = '../pages/pets.html';
+    });
 
     // Функционал плавной прокрутки кнопки главной страницы
     document.querySelector('.promo_btn').addEventListener('click', (e) => {
@@ -54,8 +56,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Функционал пополнения и динамики слайдера
     const content = document.querySelector(
-        '.our_friends_slider .slider_content'
-    ),
+            '.our_friends_slider .slider_content'
+        ),
         prev = document.querySelector('.our_friends_slider .slider_left'),
         next = document.querySelector('.our_friends_slider .slider_right');
 
@@ -70,8 +72,9 @@ document.addEventListener('DOMContentLoaded', function () {
         DB = data;
         valueOfPets = data.length;
         let widthOfGap = window.getComputedStyle(content).gap;
-        content.style.cssText = `width: ${valueOfPets * 270 + (valueOfPets - 1) * parseInt(widthOfGap)
-            }px`;
+        content.style.cssText = `width: ${
+            valueOfPets * 270 + (valueOfPets - 1) * parseInt(widthOfGap)
+        }px`;
         content.innerHTML = '';
         data.forEach((item, i) => {
             content.innerHTML += `
@@ -179,10 +182,13 @@ document.addEventListener('DOMContentLoaded', function () {
         menu.classList.toggle('header_menu_active');
     });
 
-    document.body.addEventListener('click', e => {
-        if (!e.target.closest('.header_menu') && !e.target.closest('.header_burger')) {
+    document.body.addEventListener('click', (e) => {
+        if (
+            !e.target.closest('.header_menu') &&
+            !e.target.closest('.header_burger')
+        ) {
             menu.classList.remove('header_menu_active');
             btn.classList.remove('header_burger_active');
         }
-    })
+    });
 });

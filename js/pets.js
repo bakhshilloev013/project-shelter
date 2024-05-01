@@ -2,17 +2,20 @@
 
 document.addEventListener('DOMContentLoaded', function () {
     // Функционал лавной прокрутки по ссылкам в блоке навигации
-    document.querySelectorAll('.header_menu li a').forEach((link) => {
+    const navLinks = document.querySelectorAll('.header_menu li a');
+    navLinks.forEach((link) => {
         link.addEventListener('click', function (e) {
             e.preventDefault();
 
-            if (this.getAttribute('href') === '../index.html') {
+            const linkValue = link.getAttribute('href');
+            if (linkValue === '../index.html') {
                 location.href = '../index.html';
-            } else if (this.getAttribute('href') === '../index.html#help') {
+            } else if (linkValue === '../index.html#help') {
                 location.href = '../index.html#help';
             }
-
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
+            
+            const scrollBlock = document.querySelector(linkValue);
+            scrollBlock.scrollIntoView({
                 behavior: 'smooth',
             });
             document
