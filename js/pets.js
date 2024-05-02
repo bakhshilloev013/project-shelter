@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
             } else if (linkValue === '../index.html#help') {
                 location.href = '../index.html#help';
             }
-            
+
             const scrollBlock = document.querySelector(linkValue);
             scrollBlock.scrollIntoView({
                 behavior: 'smooth',
@@ -54,33 +54,101 @@ document.addEventListener('DOMContentLoaded', function () {
         ),
         sliderLeft = document.querySelector('.pets_slider .slider_left'),
         sliderPageNum = document.querySelector('.pets_slider .slider_num'),
-        sliderRight = document.querySelector(
-            '.pets_slider .slider_double_right'
-        ),
+        sliderRight = document.querySelector('.pets_slider .slider_right'),
         sliderDoubleRight = document.querySelector(
             '.pets_slider .slider_double_right'
         );
 
-    let valueOfPets;
-    let DB;
-    fetch('../data/pets.json')
-        .then((response) => response.json())
-        .then((json) => renderContent(json));
+    let DB = [];
+    function sendRequest() {
+        fetch('../data/pets.json')
+            .then((response) => response.json())
+            .then((json) => renderContent(json));
+    }
+    sendRequest();
+
+    let currentPage = 0;
+
+    sliderLeft.addEventListener('click', (e) => {
+        sliderDoubleRight.classList.remove('slider_btn_disable');
+        sliderRight.classList.remove('slider_btn_disable');
+        if (currentPage === 0) {
+            sliderDoubleLeft.classList.add('slider_btn_disable');
+            sliderLeft.classList.add('slider_btn_disable');
+            return;
+        } else {
+            --currentPage;
+            sliderPageNum.textContent = currentPage + 1;
+            createCards(DB[currentPage]);
+        }
+    });
+
+    sliderRight.addEventListener('click', (e) => {
+        sliderDoubleLeft.classList.remove('slider_btn_disable');
+        sliderLeft.classList.remove('slider_btn_disable');
+        if (currentPage === DB.length - 1) {
+            sliderDoubleRight.classList.add('slider_btn_disable');
+            sliderRight.classList.add('slider_btn_disable');
+            return;
+        } else {
+            ++currentPage;
+            sliderPageNum.textContent = currentPage + 1;
+            createCards(DB[currentPage]);
+        }
+    });
+
+    sliderDoubleLeft.addEventListener('click', (e) => {
+        sliderDoubleLeft.classList.add('slider_btn_disable');
+        sliderLeft.classList.add('slider_btn_disable');
+        sliderDoubleRight.classList.remove('slider_btn_disable');
+        sliderRight.classList.remove('slider_btn_disable');
+        currentPage = 0;
+        createCards(DB[0]);
+        sliderPageNum.textContent = 1;
+    });
+
+    sliderDoubleRight.addEventListener('click', (e) => {
+        currentPage = DB.length - 1
+        sliderDoubleRight.classList.add('slider_btn_disable');
+        sliderRight.classList.add('slider_btn_disable');
+        sliderLeft.classList.remove('slider_btn_disable');
+        sliderDoubleLeft.classList.remove('slider_btn_disable');
+        createCards(DB[DB.length - 1]);
+        sliderPageNum.textContent = DB.length;
+    });
 
     function renderContent(data) {
-        valueOfPets = data.length;
-        DB = data;
+        let widthOfPage =
+            parseInt(window.getComputedStyle(document.body).width) + 17;
+        if (widthOfPage > 992) {
+            for (let i = 0; i < data.length; i += 8) {
+                DB.push(data.slice(i, i + 8));
+            }
+            // console.log(DB);
+        } else if (widthOfPage > 576 && widthOfPage <= 992) {
+            for (let i = 0; i < data.length; i += 6) {
+                DB.push(data.slice(i, i + 6));
+            }
+            // console.log(DB);
+        } else if (widthOfPage >= 320 && widthOfPage <= 576) {
+            for (let i = 0; i < data.length; i += 3) {
+                DB.push(data.slice(i, i + 3));
+            }
+            // console.log(DB);
+        }
+
+        createCards(DB[currentPage]);
+    }
+
+    let index = 0;
+    function createCards(arr) {
         sliderContent.innerHTML = '';
-        sliderContent.style.cssText = `
-            width: ${valueOfPets * 270 + (valueOfPets - 1) * 90}px
-        `;
-        let index = 0;
-        DB.forEach((item, i) => {
-            if (index === 8) {
+        if (index === 8) {
+            index = 0;
+        }
+        arr.forEach((item, i) => {
+            if (index >= 8) {
                 index = 0;
-                DB[index].img = `../img/pets/pets-${index + 1}.png`;
-            } else {
-                DB[index].img = `../img/pets/pets-${index + 1}.png`;
             }
             sliderContent.innerHTML += `
             <div data-index=${i} class="slider_card">
@@ -94,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     Learn more
                 </button>
             </div>
-            `;
+        `;
             index++;
         });
     }
@@ -103,8 +171,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const parent = e.target.closest('.slider_card');
         const parentIndex = parent.getAttribute('data-index');
         const urlToImg = parent.querySelector('.card_img').getAttribute('src');
-
-        showModal(DB[parentIndex], urlToImg);
+        showModal(DB[currentPage][parentIndex], urlToImg);
     });
 
     function showModal(data, urlToImg) {
@@ -155,10 +222,13 @@ document.addEventListener('DOMContentLoaded', function () {
         menu.classList.toggle('header_menu_active');
     });
 
-    document.body.addEventListener('click', e => {
-        if (!e.target.closest('.header_menu') && !e.target.closest('.header_burger')) {
+    document.body.addEventListener('click', (e) => {
+        if (
+            !e.target.closest('.header_menu') &&
+            !e.target.closest('.header_burger')
+        ) {
             menu.classList.remove('header_menu_active');
             btn.classList.remove('header_burger_active');
         }
-    })
+    });
 });

@@ -164,7 +164,7 @@
                     max-width: 580px;
                     margin: 0 auto;
                     .slider_content {
-                        grid-template-columns: repeat(3, minmax(270px, 0fr));
+                        grid-template-columns: repeat(2, minmax(270px, 0fr));
                         gap: 30px 40px;
                     }
                 }
@@ -515,9 +515,10 @@
                 .slider_wrapper {
                     .slider_content {
                         min-height: 1323px;
-                        gap: 0 30px;
-                        grid-template-columns: repeat(3, 1fr);
-                        // grid-template-rows: repeat(3, 270px);
+                        width: 100%;
+                        gap: 30px;
+                        display: flex;
+                        flex-direction: column;
                     }
                 }
                 .slider_btns {
