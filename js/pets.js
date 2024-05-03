@@ -67,55 +67,132 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     sendRequest();
 
-    let currentPage = 0;
-
+    const widthOfContent = parseInt(
+        window.getComputedStyle(sliderWrapper).width
+    );
+    
+    // 7160 width
+    // 6880 transform
+    let transformValue = 0;
+    let pageNum = 1;
     sliderLeft.addEventListener('click', (e) => {
-        sliderDoubleRight.classList.remove('slider_btn_disable');
-        sliderRight.classList.remove('slider_btn_disable');
-        if (currentPage === 0) {
-            sliderDoubleLeft.classList.add('slider_btn_disable');
-            sliderLeft.classList.add('slider_btn_disable');
+        if (transformValue === 0) {
+            console.log('достиг начала');
+            sliderLeft.classList.add('slider_btn_disable')
+            sliderDoubleLeft.classList.add('slider_btn_disable')
             return;
-        } else {
-            --currentPage;
-            sliderPageNum.textContent = currentPage + 1;
-            createCards(DB[currentPage]);
         }
+        if (pageNum <= DB.length) {
+            sliderRight.classList.remove('slider_btn_disable');
+            sliderDoubleRight.classList.remove('slider_btn_disable');
+        }
+        transformValue += widthOfContent + 150;
+        console.log(transformValue)
+        sliderContent.style.cssText += `transform: translateX(${transformValue}px)`;
+        pageNum--;
+        sliderPageNum.textContent = pageNum;
     });
+    sliderDoubleLeft.addEventListener('click', e => {
+        if (transformValue === 0) {
+            console.log('достиг начала');
+            sliderLeft.classList.add('slider_btn_disable')
+            sliderDoubleLeft.classList.add('slider_btn_disable')
+            return;
+        }
 
-    sliderRight.addEventListener('click', (e) => {
-        sliderDoubleLeft.classList.remove('slider_btn_disable');
-        sliderLeft.classList.remove('slider_btn_disable');
-        if (currentPage === DB.length - 1) {
-            sliderDoubleRight.classList.add('slider_btn_disable');
+        transformValue = 0;
+        sliderContent.style.cssText += `transform: translateX(${transformValue}px)`;
+        pageNum = 1;
+        sliderPageNum.textContent = pageNum;
+        sliderLeft.classList.add('slider_btn_disable')
+        sliderDoubleLeft.classList.add('slider_btn_disable')
+        sliderRight.classList.remove('slider_btn_disable');
+        sliderDoubleRight.classList.remove('slider_btn_disable');
+    })
+    sliderRight.addEventListener('click', e => {
+        if (transformValue === -(parseInt(window.getComputedStyle(sliderContent).width) - widthOfContent)) {
+            console.log('достиг конца');
             sliderRight.classList.add('slider_btn_disable');
+            sliderDoubleRight.classList.add('slider_btn_disable');
             return;
-        } else {
-            ++currentPage;
-            sliderPageNum.textContent = currentPage + 1;
-            createCards(DB[currentPage]);
         }
-    });
+        if (pageNum > 0) {
+            sliderLeft.classList.remove('slider_btn_disable')
+            sliderDoubleLeft.classList.remove('slider_btn_disable')
+        }
+        transformValue -= widthOfContent + 150;
+        console.log(transformValue)
+        sliderContent.style.cssText += `transform: translateX(${transformValue}px)`;
+        pageNum++;
+        sliderPageNum.textContent = pageNum;
+    })
+    sliderDoubleRight.addEventListener('click', e => {
+        if (transformValue === -(parseInt(window.getComputedStyle(sliderContent).width) - widthOfContent)) {
+            sliderRight.classList.add('slider_btn_disable');
+            sliderDoubleRight.classList.add('slider_btn_disable');
+            sliderLeft.classList.remove('slider_btn_disable')
+            sliderDoubleLeft.classList.remove('slider_btn_disable')
+            console.log('достиг конца');
+            return;
+        }
+        transformValue = -(parseInt(window.getComputedStyle(sliderContent).width) - widthOfContent);
+        sliderContent.style.cssText += `transform: translateX(${transformValue}px)`;
+        pageNum = DB.length;
+        sliderPageNum.textContent = pageNum;
+    })
 
-    sliderDoubleLeft.addEventListener('click', (e) => {
-        sliderDoubleLeft.classList.add('slider_btn_disable');
-        sliderLeft.classList.add('slider_btn_disable');
-        sliderDoubleRight.classList.remove('slider_btn_disable');
-        sliderRight.classList.remove('slider_btn_disable');
-        currentPage = 0;
-        createCards(DB[0]);
-        sliderPageNum.textContent = 1;
-    });
 
-    sliderDoubleRight.addEventListener('click', (e) => {
-        currentPage = DB.length - 1
-        sliderDoubleRight.classList.add('slider_btn_disable');
-        sliderRight.classList.add('slider_btn_disable');
-        sliderLeft.classList.remove('slider_btn_disable');
-        sliderDoubleLeft.classList.remove('slider_btn_disable');
-        createCards(DB[DB.length - 1]);
-        sliderPageNum.textContent = DB.length;
-    });
+    // let currentPage = 0;
+
+    /*
+    // sliderLeft.addEventListener('click', (e) => {
+    //     sliderDoubleRight.classList.remove('slider_btn_disable');
+    //     sliderRight.classList.remove('slider_btn_disable');
+    //     if (currentPage === 0) {
+    //         sliderDoubleLeft.classList.add('slider_btn_disable');
+    //         sliderLeft.classList.add('slider_btn_disable');
+    //         return;
+    //     } else {
+    //         --currentPage;
+    //         sliderPageNum.textContent = currentPage + 1;
+    //         createCards(DB[currentPage]);
+    //     }
+    // });
+
+    // sliderRight.addEventListener('click', (e) => {
+    //     sliderDoubleLeft.classList.remove('slider_btn_disable');
+    //     sliderLeft.classList.remove('slider_btn_disable');
+    //     if (currentPage === DB.length - 1) {
+    //         sliderDoubleRight.classList.add('slider_btn_disable');
+    //         sliderRight.classList.add('slider_btn_disable');
+    //         return;
+    //     } else {
+    //         ++currentPage;
+    //         sliderPageNum.textContent = currentPage + 1;
+    //         createCards(DB[currentPage]);
+    //     }
+    // });
+
+    // sliderDoubleLeft.addEventListener('click', (e) => {
+    //     sliderDoubleLeft.classList.add('slider_btn_disable');
+    //     sliderLeft.classList.add('slider_btn_disable');
+    //     sliderDoubleRight.classList.remove('slider_btn_disable');
+    //     sliderRight.classList.remove('slider_btn_disable');
+    //     currentPage = 0;
+    //     createCards(DB[0]);
+    //     sliderPageNum.textContent = 1;
+    // });
+
+    // sliderDoubleRight.addEventListener('click', (e) => {
+    //     currentPage = DB.length - 1
+    //     sliderDoubleRight.classList.add('slider_btn_disable');
+    //     sliderRight.classList.add('slider_btn_disable');
+    //     sliderLeft.classList.remove('slider_btn_disable');
+    //     sliderDoubleLeft.classList.remove('slider_btn_disable');
+    //     createCards(DB[DB.length - 1]);
+    //     sliderPageNum.textContent = DB.length;
+    // });
+    */
 
     function renderContent(data) {
         let widthOfPage =
@@ -124,46 +201,57 @@ document.addEventListener('DOMContentLoaded', function () {
             for (let i = 0; i < data.length; i += 8) {
                 DB.push(data.slice(i, i + 8));
             }
-            // console.log(DB);
         } else if (widthOfPage > 576 && widthOfPage <= 992) {
             for (let i = 0; i < data.length; i += 6) {
                 DB.push(data.slice(i, i + 6));
             }
-            // console.log(DB);
         } else if (widthOfPage >= 320 && widthOfPage <= 576) {
             for (let i = 0; i < data.length; i += 3) {
                 DB.push(data.slice(i, i + 3));
             }
-            // console.log(DB);
         }
 
-        createCards(DB[currentPage]);
+        createCards(DB);
     }
 
-    let index = 0;
     function createCards(arr) {
+        let sliderWrapper = document.querySelector('.slider_wrapper');
+        let widthOfWrapper = parseInt(
+            window.getComputedStyle(sliderWrapper).width
+        );
+        let widthOfGap = parseInt(window.getComputedStyle(sliderContent).gap);
         sliderContent.innerHTML = '';
-        if (index === 8) {
-            index = 0;
-        }
-        arr.forEach((item, i) => {
-            if (index >= 8) {
-                index = 0;
-            }
-            sliderContent.innerHTML += `
-            <div data-index=${i} class="slider_card">
-                <img
-                    src="../img/pets/pets-${index + 1}.png"
-                    alt=""
-                    class="card_img"
-                />
-                <div class="card_title">${item.name}</div>
-                <button class="card_button">
-                    Learn more
-                </button>
-            </div>
-        `;
-            index++;
+        sliderContent.style.width =
+            widthOfWrapper * arr.length + (arr.length - 1) * widthOfGap + 'px';
+        let index = 0;
+        arr.forEach((ar, num) => {
+            const page = document.createElement('div');
+            page.classList.add('pagination_content');
+            page.setAttribute('data-page', num);
+            let widthOfWrapper = parseInt(
+                window.getComputedStyle(sliderWrapper).width
+            );
+            page.style.maxWidth = widthOfWrapper + 'px';
+            ar.forEach((item, i) => {
+                if (index === 8) {
+                    index = 0;
+                }
+                page.innerHTML += `
+                <div data-index=${i} class="slider_card">
+                    <img
+                        src="../img/pets/pets-${index + 1}.png"
+                        alt=""
+                        class="card_img"
+                    />
+                    <div class="card_title">${item.name}</div>
+                    <button class="card_button">
+                        Learn more
+                    </button>
+                </div>
+                `;
+                index++;
+            });
+            sliderContent.append(page);
         });
     }
 
@@ -171,7 +259,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const parent = e.target.closest('.slider_card');
         const parentIndex = parent.getAttribute('data-index');
         const urlToImg = parent.querySelector('.card_img').getAttribute('src');
-        showModal(DB[currentPage][parentIndex], urlToImg);
+        showModal(DB[pageNum - 1][parentIndex], urlToImg);
     });
 
     function showModal(data, urlToImg) {

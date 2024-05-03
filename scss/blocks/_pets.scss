@@ -54,20 +54,23 @@
                 .slider_content {
                     min-height: 930px;
                     width: 300%;
-                    display: grid;
-                    grid-template-columns: repeat(4, minmax(270px, 0fr));
-                    grid-template-rows: repeat(2, auto); /* Два ряда */
-                    gap: 0px 40px;
-                    /*
+                    display: flex;
+                    align-items: start;
+                    gap: 150px;
+                    scroll-behavior: smooth;
+                    transition: 0.3s all;
+                    .pagination_content {
+                        min-height: 100%;
+                        width: 100%;
                         display: grid;
-                        grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-                        grid-template-rows: repeat(2, 435px); 
+                        grid-template-columns: repeat(4, minmax(270px, 0fr));
+                        grid-template-rows: repeat(2, auto);
                         gap: 30px 40px;
-                    */
-                    .slider_card {
-                        @include card-style;
-                        .card_title {
-                            letter-spacing: 1.4px;
+                        .slider_card {
+                            @include card-style;
+                            .card_title {
+                                letter-spacing: 1.4px;
+                            }
                         }
                     }
                 }

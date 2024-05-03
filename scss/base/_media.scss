@@ -164,8 +164,16 @@
                     max-width: 580px;
                     margin: 0 auto;
                     .slider_content {
-                        grid-template-columns: repeat(2, minmax(270px, 0fr));
-                        gap: 30px 40px;
+                        display: flex;
+                        align-items: start;
+                        .pagination_content {
+                            display: grid;
+                            grid-template-columns: repeat(
+                                2,
+                                minmax(270px, 0fr)
+                            );
+                            grid-template-rows: repeat(3, auto);
+                        }
                     }
                 }
             }
@@ -516,9 +524,16 @@
                     .slider_content {
                         min-height: 1323px;
                         width: 100%;
-                        gap: 30px;
                         display: flex;
-                        flex-direction: column;
+                        align-items: start;
+                        .pagination_content {
+                            display: grid;
+                            grid-template-columns: repeat(
+                                1,
+                                minmax(270px, 0fr)
+                            );
+                            grid-template-rows: repeat(3, auto);
+                        }
                     }
                 }
                 .slider_btns {
