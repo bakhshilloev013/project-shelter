@@ -7,8 +7,9 @@ document.addEventListener('DOMContentLoaded', function () {
         link.addEventListener('click', function (e) {
             e.preventDefault();
 
-            if (this.getAttribute('href') === './pages/pets.html') {
+            if (link.getAttribute('href') === './pages/pets.html') {
                 location.href = '../pages/pets.html';
+                return;
             }
 
             const selector = link.getAttribute('href');
