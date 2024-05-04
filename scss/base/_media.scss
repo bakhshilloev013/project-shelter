@@ -158,8 +158,12 @@
     }
     .pets {
         .pets_content {
+            .pets_title {
+                font-size: 35px;
+            }
             .pets_slider {
                 min-height: calc(1365px + 168px);
+                margin-top: 29px;
                 .slider_wrapper {
                     max-width: 580px;
                     margin: 0 auto;
@@ -175,6 +179,9 @@
                             grid-template-rows: repeat(3, auto);
                         }
                     }
+                }
+                .slider_btns {
+                    margin-top: 40px;
                 }
             }
         }
@@ -516,6 +523,7 @@
         .pets_content {
             .pets_title {
                 letter-spacing: 1.2px;
+                font-size: 25px;
             }
             .pets_slider {
                 min-height: calc(1642px - 148px);
