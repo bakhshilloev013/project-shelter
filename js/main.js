@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
             e.preventDefault();
 
             if (this.getAttribute('href') === './pages/pets.html') {
-                location.href = './pages/pets.html';
+                location.href = '../pages/pets.html';
             }
 
             const selector = link.getAttribute('href');
